@@ -34,4 +34,5 @@ public class UsuarioWeb implements Serializable {
 	public Usuario getUsuario() {
 		return usuario;
 	}
+
 }

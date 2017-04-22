@@ -25,11 +25,13 @@ public class UsuarioBean {
 		UsuarioDao dao = new UsuarioDao();
 		if (this.usuario.getId() == null) {
 			dao.adiciona(this.usuario);
+			new FacesUtils().adicionaMensagemDeSucesso(Constantes.MSG_ADICIONADO_SUCESSO);
 		} else {
 			dao.atualiza(usuario);
+
+			new FacesUtils().adicionaMensagemDeSucesso(Constantes.MSG_ALTERADO_SUCESSO);
 		}
-		new FacesUtils()
-				.adicionaMensagemDeErro(Constantes.MSG_ADICIONADO_SUCESSO);
+
 		this.usuario = new Usuario();
 
 	}
@@ -42,8 +44,7 @@ public class UsuarioBean {
 	public void remove(Usuario u) {
 		UsuarioDao dao = new UsuarioDao();
 		dao.remove(u);
-		new FacesUtils()
-				.adicionaMensagemDeErro(Constantes.MSG_REMOVIDO_SUCESSO);
+		new FacesUtils().adicionaMensagemDeErro(Constantes.MSG_REMOVIDO_SUCESSO);
 	}
 
 	public void cancela() {
