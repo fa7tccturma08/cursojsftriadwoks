@@ -2,16 +2,23 @@ package br.com.triadworks.bugtracker.controller;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.triadworks.bugtracker.dao.UsuarioDao;
 import br.com.triadworks.bugtracker.modelo.Usuario;
 import br.com.triadworks.bugtracker.util.Constantes;
 import br.com.triadworks.bugtracker.util.FacesUtils;
+import br.com.triadworks.bugtraker.interceptor.Transacional;
 
-@ManagedBean
+@Named
+@RequestScoped
 public class UsuarioBean {
+
 	private Usuario usuario = new Usuario();
+	@Inject
+	private UsuarioDao dao;
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -21,26 +28,28 @@ public class UsuarioBean {
 		this.usuario = usuario;
 	}
 
+	@Transacional
 	public void salva() {
-		UsuarioDao dao = new UsuarioDao();
 		if (this.usuario.getId() == null) {
 			dao.adiciona(this.usuario);
+			new FacesUtils()
+					.adicionaMensagemDeSucesso(Constantes.MSG_ADICIONADO_SUCESSO);
 		} else {
 			dao.atualiza(usuario);
+			new FacesUtils()
+					.adicionaMensagemDeSucesso(Constantes.MSG_ATUALIZADO_SUCESSO);
 		}
-		new FacesUtils()
-				.adicionaMensagemDeErro(Constantes.MSG_ADICIONADO_SUCESSO);
+
 		this.usuario = new Usuario();
 
 	}
 
 	public List<Usuario> getUsuarios() {
-		UsuarioDao dao = new UsuarioDao();
 		return dao.lista();
 	}
 
+	@Transacional
 	public void remove(Usuario u) {
-		UsuarioDao dao = new UsuarioDao();
 		dao.remove(u);
 		new FacesUtils()
 				.adicionaMensagemDeErro(Constantes.MSG_REMOVIDO_SUCESSO);

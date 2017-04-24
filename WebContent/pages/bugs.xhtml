@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/templates/template-principal.xhtml">
+	<ui:define name="corpo">
+		<h:form>
+			<fiedlset> <legend>Dados do bug</legend> <h:outputLabel
+				value="Sumário" for="sumario" /> <h:inputText id="sumario"
+				value="#{bugBean.bug.sumario}" label="Sumário" required="true"
+				pt:placeholder="informe o sumário" /> </fiedlset>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

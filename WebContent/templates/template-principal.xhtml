@@ -16,7 +16,8 @@
 		<ui:insert name="cabecalho">
 			<div id="user-info">
 				<h:form>
-				#{usuarioWeb.usuario.login}
+				#{usuarioWeb.usuario.login} 
+				&#160;
 				<h:commandLink value="Sair" action="#{loginBean.sair}" />
 				</h:form>
 			</div>
@@ -26,7 +27,7 @@
 			</ul>
 		</ui:insert>
 	</div>
-	<h:messages id="mensagens" infoClass="notice" errorClass="errors" />
+	<h:messages id="mensagens" infoClass="success" errorClass="errors" />
 	<div id="conteudo">
 		<div id="container">
 			<ui:insert name="corpo" />
