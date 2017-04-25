@@ -25,7 +25,7 @@ public class LoginBean {
 		Usuario usuario = autenticador.autentica(login, senha);
 		if (usuario != null) {
 			usuarioWeb.loga(usuario);
-			return "/pages/usuarios";
+			return "/pages/usuarios?faces-redirect=true";
 		}
 		new FacesUtils().adicionaMensagemDeErro(Constantes.MSG_LOGIN_INVALIDO);
 		return null;

@@ -8,11 +8,46 @@
 
 <ui:composition template="/templates/template-principal.xhtml">
 	<ui:define name="corpo">
-		<h:form>
-			<fiedlset> <legend>Dados do bug</legend> <h:outputLabel
-				value="Sumário" for="sumario" /> <h:inputText id="sumario"
-				value="#{bugBean.bug.sumario}" label="Sumário" required="true"
-				pt:placeholder="informe o sumário" /> </fiedlset>
+		<h:form id="form">
+			<h1>Novo Bug</h1>
+			<fieldset>
+				<legend>Dados do bug</legend>
+
+				<h:outputLabel value="Sumário" for="sumario" />
+
+				<h:inputText id="sumario" value="#{bugBean.bug.sumario}"
+					label="Sumário" styleClass="texto-longo" required="true"
+					pt:placeholder="Informe o sumário" />
+
+				<h:outputLabel value="Descrição" for="descricao" />
+
+				<h:inputTextarea id="descricao" rows="3" styleClass="texto-longo"
+					required="true" pt:placeholder="Informe aqui a descrição"
+					label="Descrição" value="#{bugBean.bug.descricao}">
+					<f:validateLength maximum="1000" />
+				</h:inputTextarea>
+
+				<h:outputLabel value="Status" for="status" />
+				<h:selectOneRadio id="status" value="#{bugBean.bug.status}">
+					<f:selectItems value="#{bugBean.todosOsStatus}" var="s"
+						itemLabel="#{s.descricao}" itemValue="#{s}" />
+				</h:selectOneRadio>
+
+				<h:outputLabel value="Reportado em " for="criadoEm" />
+				<h:inputText id="criadoEm" value="#{bugBean.bug.criadoEm}"
+					label="Reportado em" required="true">
+
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+
+				<div class="acoes-principais">
+					<h:commandLink value="Cancelar" action="/pages/bugs.xhtml"
+						immediate="true" />
+					&#160;
+					<h:commandButton value="Salvar" action="#{bugBean.salva}" />
+				</div>
+
+			</fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>
