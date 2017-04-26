@@ -50,23 +50,6 @@
 			</fieldset>
 			<fieldset class="responsaveis">
 				<legend>Dados do responsável</legend>
-
-				<h:selectOneMenu label="Responsável "
-					value="#{bugBean.responsavel.id}" required="true">
-					<f:selectItem itemLabel="Selecione um usuário "
-						noSelectionOption="true" />
-					<f:selectItems value="#{bugBean.usuarios}" var="u"
-						itemLabel="#{u.nome}" itemValue="#{u.id}" />
-				</h:selectOneMenu>
-
-				<h:commandButton value="Adicionar responsável"
-					action="#{bugBean.adicionaResponsavel}" />
-			</fieldset>
-			<h:dataTable value="#{bugBean.bug.responsaveis}" var="r"
-				styleClass="dados" rowClasses="impar,par">
-				<h:column>
-					<f:facet name="header">Login</f:facet>
-				#{r.login}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Nome</f:facet>
